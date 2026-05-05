@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kajal Gupta | Frontend Developer & React Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#07060f;--bg2:#0f0d1e;--bg3:#16132b;
+  --purple:#7c3aed;--purple-light:#a78bfa;--purple-glow:#c4b5fd;
+  --pink:#e879f9;--white:#f8f7ff;--muted:#9490b5;
+  --border:rgba(124,58,237,0.2);--card:rgba(255,255,255,0.03);
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--white);font-family:"DM Sans",sans-serif;overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--purple);border-radius:2px;}
+body::before{content:"";position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 6%;display:flex;align-items:center;justify-content:space-between;background:rgba(7,6,15,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{font-family:"Syne",sans-serif;font-weight:800;font-size:1.4rem;color:var(--white);}
+.logo span{color:var(--purple-light);}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{
+  color:var(--muted);text-decoration:none;font-size:0.9rem;font-weight:400;
+  letter-spacing:0.02em;position:relative;overflow:hidden;display:inline-block;
+  padding-bottom:2px;
+}
+.nav-links a::after{
+  content:"";position:absolute;bottom:0;left:0;width:100%;height:1px;
+  background:var(--purple-light);transform:scaleX(0);transform-origin:right;
+  transition:transform 0.3s ease;
+}
+.nav-links a:hover{color:var(--white);}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left;}
+
+/* BACK TO TOP */
+.back-to-top{position:fixed;right:0;top:50%;transform:translateY(-50%);writing-mode:vertical-rl;text-orientation:mixed;color:var(--muted);font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;padding:1rem 0.6rem;cursor:pointer;z-index:99;background:rgba(7,6,15,0.7);border-left:1px solid var(--border);transition:color 0.2s;text-decoration:none;}
+.back-to-top:hover{color:var(--purple-light);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:7rem 6% 4rem;position:relative;overflow:hidden;}
+.hero-glow{position:absolute;top:-20%;left:-10%;width:700px;height:700px;background:radial-gradient(circle,rgba(124,58,237,0.15) 0%,transparent 70%);pointer-events:none;}
+.hero-glow2{position:absolute;bottom:-10%;right:-5%;width:500px;height:500px;background:radial-gradient(circle,rgba(232,121,249,0.08) 0%,transparent 70%);pointer-events:none;}
+.hero-content{max-width:680px;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.3);border-radius:50px;padding:0.4rem 1rem;font-size:0.8rem;color:var(--purple-glow);margin-bottom:1.8rem;animation:fadeUp 0.6s ease both;}
+.badge-dot{width:7px;height:7px;background:#22c55e;border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(1.3);}}
+.hero h1{font-family:"Syne",sans-serif;font-weight:800;font-size:clamp(3rem,7vw,5.5rem);line-height:1.05;margin-bottom:0.5rem;animation:fadeUp 0.6s 0.1s ease both;}
+.hero h1 .name-color{background:linear-gradient(135deg,var(--purple-light),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-role{font-size:clamp(1.1rem,2.5vw,1.4rem);color:var(--muted);font-weight:300;margin-bottom:1.5rem;animation:fadeUp 0.6s 0.2s ease both;}
+.hero-role strong{color:var(--purple-glow);font-weight:500;}
+.hero-desc{font-size:1rem;color:var(--muted);line-height:1.8;max-width:520px;margin-bottom:2.5rem;animation:fadeUp 0.6s 0.3s ease both;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp 0.6s 0.4s ease both;}
+.btn-primary{background:var(--purple);color:var(--white);padding:0.85rem 2rem;border-radius:50px;text-decoration:none;font-weight:500;font-size:0.95rem;transition:all 0.2s;}
+.btn-primary:hover{background:#6d28d9;transform:translateY(-2px);box-shadow:0 8px 25px rgba(124,58,237,0.4);}
+.btn-outline{border:1px solid var(--border);color:var(--white);padding:0.85rem 2rem;border-radius:50px;text-decoration:none;font-weight:400;font-size:0.95rem;transition:all 0.2s;background:transparent;}
+.btn-outline:hover{border-color:var(--purple-light);color:var(--purple-light);transform:translateY(-2px);}
+.hero-stats{display:flex;gap:3rem;margin-top:3.5rem;animation:fadeUp 0.6s 0.5s ease both;}
+.stat-num{font-family:"Syne",sans-serif;font-size:2rem;font-weight:800;color:var(--white);}
+.stat-num span{color:var(--purple-light);}
+.stat-label{font-size:0.8rem;color:var(--muted);margin-top:0.2rem;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+/* SECTIONS */
+section{padding:6rem 6%;position:relative;z-index:1;}
+.section-tag{display:inline-block;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--purple-light);margin-bottom:0.8rem;font-weight:500;}
+.section-title{font-family:"Syne",sans-serif;font-weight:700;font-size:clamp(2rem,4vw,2.8rem);margin-bottom:1rem;line-height:1.2;}
+.section-sub{color:var(--muted);font-size:1rem;line-height:1.7;max-width:520px;}
+
+/* NUMBERS SECTION */
+.numbers-section{background:#000;padding:6rem 6%;border-top:1px solid rgba(255,255,255,0.05);}
+.numbers-heading{font-family:"Syne",sans-serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:300;line-height:1.1;color:var(--white);margin-bottom:4rem;}
+.numbers-heading strong{font-weight:800;}
+.numbers-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-bottom:3rem;}
+.ns-num{font-family:"Syne",sans-serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:700;color:var(--white);line-height:1;}
+.ns-num span{color:var(--purple-light);}
+.ns-label{font-size:0.9rem;font-weight:600;color:var(--white);margin-top:0.5rem;}
+.numbers-desc{color:var(--muted);font-size:1rem;line-height:1.8;max-width:480px;margin-bottom:2.5rem;}
+.numbers-btns{display:flex;align-items:center;gap:2rem;}
+.numbers-resume-link{color:var(--white);text-decoration:none;font-family:"Syne",sans-serif;font-size:0.85rem;font-weight:700;letter-spacing:0.12em;border-bottom:2px solid var(--purple-light);padding-bottom:2px;transition:color 0.2s;}
+.numbers-resume-link:hover{color:var(--purple-light);}
+@media(max-width:768px){.numbers-stats{grid-template-columns:repeat(2,1fr);}}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:4rem;}
+.about-img-wrap{position:relative;}
+.about-img-box{width:100%;aspect-ratio:1;border-radius:24px;background:linear-gradient(135deg,var(--bg3),var(--bg2));border:1px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.about-img-box::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(232,121,249,0.05));}
+.about-img-box .kg-big{font-family:"Syne",sans-serif;font-size:7rem;font-weight:800;background:linear-gradient(135deg,var(--purple-light),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;z-index:1;}
+.about-badge-float{position:absolute;bottom:-1rem;right:-1rem;background:var(--purple);border-radius:16px;padding:1rem 1.2rem;text-align:center;box-shadow:0 8px 30px rgba(124,58,237,0.4);}
+.about-badge-float strong{display:block;font-family:"Syne",sans-serif;font-size:1.6rem;font-weight:800;}
+.about-badge-float span{font-size:0.75rem;color:rgba(255,255,255,0.7);}
+.about-text p{color:var(--muted);line-height:1.8;margin-bottom:1.2rem;}
+.about-tags{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1.5rem;}
+.tag{background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.25);color:var(--purple-glow);border-radius:50px;padding:0.35rem 0.9rem;font-size:0.8rem;}
+
+/* SKILLS */
+.skills-section{background:var(--bg2);}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:3rem;}
+.skill-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.8rem;transition:border-color 0.2s,transform 0.2s;}
+.skill-card:hover{border-color:rgba(124,58,237,0.5);transform:translateY(-4px);}
+.skill-card-icon{width:44px;height:44px;border-radius:12px;background:rgba(124,58,237,0.15);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1rem;}
+.skill-card h3{font-family:"Syne",sans-serif;font-size:1rem;font-weight:700;margin-bottom:0.8rem;}
+.skill-pills{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.skill-pill{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:var(--muted);border-radius:6px;padding:0.25rem 0.6rem;font-size:0.78rem;}
+
+/* EXPERIENCE */
+.exp-timeline{margin-top:3rem;position:relative;}
+.exp-timeline::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--purple),transparent);}
+.exp-item{padding-left:2.5rem;margin-bottom:3rem;position:relative;}
+.exp-item::before{content:"";position:absolute;left:-5px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--purple);border:2px solid var(--bg);box-shadow:0 0 0 4px rgba(124,58,237,0.2);}
+.exp-company{display:flex;align-items:center;gap:1rem;margin-bottom:0.3rem;flex-wrap:wrap;}
+.exp-company strong{font-family:"Syne",sans-serif;font-size:1.1rem;font-weight:700;}
+.exp-current{background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:#4ade80;border-radius:50px;padding:0.2rem 0.7rem;font-size:0.72rem;}
+.exp-role{color:var(--purple-light);font-size:0.9rem;margin-bottom:0.3rem;}
+.exp-date{color:var(--muted);font-size:0.8rem;margin-bottom:1rem;}
+.exp-bullets{list-style:none;}
+.exp-bullets li{color:var(--muted);font-size:0.9rem;line-height:1.7;padding-left:1rem;position:relative;margin-bottom:0.4rem;}
+.exp-bullets li::before{content:"▸";position:absolute;left:0;color:var(--purple-light);}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;margin-top:3rem;}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;transition:all 0.25s;position:relative;overflow:hidden;}
+.project-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--pink));opacity:0;transition:opacity 0.2s;}
+.project-card:hover{border-color:rgba(124,58,237,0.4);transform:translateY(-6px);}
+.project-card:hover::before{opacity:1;}
+.project-num{font-family:"Syne",sans-serif;font-size:3rem;font-weight:800;color:rgba(124,58,237,0.1);margin-bottom:0.5rem;line-height:1;}
+.project-card h3{font-family:"Syne",sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:0.5rem;}
+.project-card p{color:var(--muted);font-size:0.88rem;line-height:1.7;margin-bottom:1.2rem;}
+.project-tech{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.tech-badge{background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.2);color:var(--purple-glow);border-radius:50px;padding:0.2rem 0.6rem;font-size:0.74rem;}
+
+/* TECH - RISHABH STYLE */
+.tech-section{background:var(--bg2);}
+.tech-heading-big{font-family:"Syne",sans-serif;font-weight:800;font-size:clamp(2.5rem,5vw,4rem);line-height:1.1;margin-bottom:4rem;margin-top:1rem;}
+.tech-heading-big em{font-style:normal;font-weight:400;}
+.tech-cat-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(255,255,255,0.08);border-radius:8px;overflow:hidden;margin-top:2rem;}
+.tech-cat-col{padding:2.5rem 2rem;border-right:1px solid rgba(255,255,255,0.08);}
+.tech-cat-col:last-child{border-right:none;}
+.tech-cat-title{font-family:"Syne",sans-serif;font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:2rem;line-height:1.4;}
+.tech-logo-grid{display:grid;grid-template-columns:repeat(2,56px);gap:1.5rem;}
+.tech-logo-grid img{width:52px;height:52px;object-fit:contain;opacity:0.85;transition:opacity 0.2s,transform 0.2s;cursor:default;}
+.tech-logo-grid img:hover{opacity:1;transform:scale(1.2);}
+
+/* RESUME SECTION - Rishabh Style */
+.resume-section{background:var(--bg);padding:5rem 6%;position:relative;}
+.resume-sub{color:var(--muted);font-size:1rem;line-height:1.6;max-width:400px;margin-left:auto;text-align:right;margin-bottom:0;}
+.resume-top-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2rem;}
+.resume-rule{height:1px;background:rgba(255,255,255,0.08);margin-bottom:3rem;}
+.resume-big{font-family:"Syne",sans-serif;font-size:clamp(2.8rem,6vw,5.5rem);font-weight:300;line-height:1.1;color:var(--white);margin-bottom:3.5rem;}
+.resume-big strong{font-weight:800;}
+.resume-dl-btn{display:inline-flex;align-items:center;justify-content:center;background:var(--purple);color:var(--white);font-family:"Syne",sans-serif;font-size:0.88rem;letter-spacing:0.12em;font-weight:700;padding:1.2rem 3.5rem;border-radius:50px;text-decoration:none;transition:background 0.2s,transform 0.2s,box-shadow 0.2s;}
+.resume-dl-btn:hover{background:#6d28d9;transform:translateY(-3px);box-shadow:0 12px 30px rgba(124,58,237,0.4);}
+@media(max-width:768px){.resume-top-row{flex-direction:column;gap:1rem;}.resume-sub{margin-left:0;text-align:left;}}
+
+/* CERTIFICATIONS */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;margin-top:2.5rem;}
+.cert-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1.6rem;display:flex;align-items:center;gap:1rem;transition:border-color 0.2s,transform 0.2s;}
+.cert-card:hover{border-color:rgba(124,58,237,0.5);transform:translateY(-3px);}
+.cert-icon{font-size:1.8rem;flex-shrink:0;}
+.cert-info strong{display:block;font-size:0.95rem;font-family:"Syne",sans-serif;}
+.cert-info span{color:var(--muted);font-size:0.8rem;}
+
+/* CONTACT */
+.contact-section{background:var(--bg2);}
+.contact-wrap{max-width:640px;margin:3rem auto 0;text-align:center;}
+.contact-wrap p{color:var(--muted);line-height:1.8;margin-bottom:2rem;}
+.contact-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;}
+.contact-link{display:flex;align-items:center;gap:0.5rem;background:var(--card);border:1px solid var(--border);color:var(--white);text-decoration:none;padding:0.7rem 1.4rem;border-radius:50px;font-size:0.88rem;transition:all 0.2s;}
+.contact-link:hover{border-color:var(--purple-light);color:var(--purple-light);transform:translateY(-2px);}
+.contact-email{font-family:"Syne",sans-serif;font-size:1.4rem;font-weight:700;color:var(--white);text-decoration:none;border-bottom:2px solid var(--purple);padding-bottom:0.2rem;transition:color 0.2s;}
+.contact-email:hover{color:var(--purple-light);}
+
+/* FOOTER */
+.footer-new{background:#000;padding:3rem 6% 1.5rem;}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem;}
+.footer-brand-name{font-family:"Syne",sans-serif;font-size:1.5rem;font-weight:800;margin-bottom:0.3rem;}
+.footer-brand-name span{color:var(--purple-light);}
+.footer-email{color:var(--muted);font-size:0.85rem;margin-bottom:1.2rem;}
+.footer-socials{display:flex;gap:1rem;}
+.footer-socials a{color:var(--muted);transition:color 0.2s;}
+.footer-socials a:hover{color:var(--white);}
+.footer-col h4{font-family:"Syne",sans-serif;font-size:0.85rem;font-weight:700;margin-bottom:1rem;color:var(--purple-light);}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:0.6rem;}
+.footer-col ul li a{color:var(--muted);text-decoration:none;font-size:0.83rem;transition:color 0.2s;}
+.footer-col ul li a:hover{color:var(--white);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.05);padding-top:1.2rem;text-align:center;}
+.footer-bottom p{color:rgba(255,255,255,0.25);font-size:0.78rem;}
+.tech-badge-list{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:0.5rem;}
+.tb{padding:0.45rem 0.85rem;border-radius:8px;font-size:0.82rem;font-weight:600;font-family:"DM Sans",sans-serif;letter-spacing:0.01em;transition:transform 0.15s,opacity 0.15s;cursor:default;}
+.tb:hover{transform:translateY(-2px);opacity:0.9;}
+@media(max-width:900px){.tech-cat-grid{grid-template-columns:repeat(2,1fr);}.tech-cat-col{border-bottom:1px solid rgba(255,255,255,0.08);}}
+@media(max-width:768px){.nav-links{display:none;}.about-grid{grid-template-columns:1fr;}.hero-stats{gap:2rem;}.footer-grid{grid-template-columns:1fr 1fr;gap:2rem;}}
+@media(max-width:500px){.tech-cat-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body id="top">
+
+<a href="#top" class="back-to-top">BACK TO TOP</a>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">K<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#top">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Available for new opportunities
+    </div>
+    <h1>Hi, I'm<br><span class="name-color">Kajal Gupta</span></h1>
+    <p class="hero-role"><strong>Frontend Developer &amp; React Developer</strong> &middot; Application Development Analyst @ Accenture</p>
+    <p class="hero-desc">Building secure, scalable, and high-performance web applications with React.js, JavaScript, and modern frontend technologies. 4.6+ years of crafting exceptional user experiences.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Get In Touch</a>
+      <a href="#projects" class="btn-outline">View My Work</a>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS SECTION - Rishabh Style -->
+<section class="numbers-section">
+  <h2 class="numbers-heading"><strong>By the</strong> Numbers My<br>Developer Journey</h2>
+  <div class="numbers-grid">
+    <div class="numbers-left">
+      <div class="numbers-stats">
+        <div class="ns-item">
+          <div class="ns-num">20<span>+</span></div>
+          <div class="ns-label">Projects Contributed</div>
+        </div>
+        <div class="ns-item">
+          <div class="ns-num">4.6<span>+</span></div>
+          <div class="ns-label">Years Experience</div>
+        </div>
+        <div class="ns-item">
+          <div class="ns-num">160,000<span>+</span></div>
+          <div class="ns-label">Lines of Code</div>
+        </div>
+      </div>
+      <p class="numbers-desc">Passionate about building things that help products grow and move forward. Every line of code is a step toward better, faster, and more secure web experiences.</p>
+      <div class="numbers-btns">
+        <a href="#experience" class="btn-primary" style="letter-spacing:0.08em;font-size:0.85rem;">WHAT I DID</a>
+        <a href="#resume" class="numbers-resume-link">RESUME</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img-wrap">
+      <div class="about-img-box"><span class="kg-big">KG</span></div>
+      <div class="about-badge-float"><strong>4.6+</strong><span>Years of Experience</span></div>
+    </div>
+    <div class="about-text">
+      <div class="section-tag">About Me</div>
+      <h2 class="section-title">Passionate about building great web experiences</h2>
+      <p>I'm a Frontend Developer &amp; React Developer currently working at <a href="https://www.accenture.com/" target="_blank" style="color:var(--purple-light);text-decoration:none;border-bottom:1px solid rgba(167,139,250,0.4);">Accenture</a> as an Application Development Analyst, contributing to enterprise AI platforms and secure web applications.</p>
+      <p>Over the past 4.6+ years, I've worked across diverse domains — AI marketplaces, fintech loan platforms, e-commerce, Shopify themes, and academic portals. I love writing clean, maintainable code and turning complex requirements into intuitive UIs.</p>
+      <p>When I'm not coding, I'm exploring new frontend technologies and improving my craft.</p>
+      <div class="about-tags">
+        <span class="tag">React.js</span><span class="tag">JavaScript</span><span class="tag">TypeScript</span>
+        <span class="tag">Astro</span><span class="tag">AWS Cognito</span><span class="tag">Shopify</span>
+        <span class="tag">Azure DevOps</span><span class="tag">Node.js</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="skills-section">
+  <div style="text-align:center;margin-bottom:1rem;">
+    <div class="section-tag">What I Know</div>
+    <h2 class="section-title">Skills &amp; Expertise</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card"><div class="skill-card-icon">⚛️</div><h3>Frontend</h3><div class="skill-pills"><span class="skill-pill">React.js</span><span class="skill-pill">JavaScript</span><span class="skill-pill">TypeScript</span><span class="skill-pill">Astro</span><span class="skill-pill">Next.js</span><span class="skill-pill">Redux</span><span class="skill-pill">Context API</span><span class="skill-pill">JSX/TSX</span></div></div>
+    <div class="skill-card"><div class="skill-card-icon">🎨</div><h3>Styling</h3><div class="skill-pills"><span class="skill-pill">Tailwind CSS</span><span class="skill-pill">Bootstrap</span><span class="skill-pill">Material UI</span><span class="skill-pill">Ant Design</span><span class="skill-pill">CSS3</span><span class="skill-pill">HTML5</span></div></div>
+    <div class="skill-card"><div class="skill-card-icon">⚡</div><h3>Performance</h3><div class="skill-pills"><span class="skill-pill">Code Splitting</span><span class="skill-pill">Lazy Loading</span><span class="skill-pill">Debouncing</span><span class="skill-pill">Memoization</span><span class="skill-pill">Image Optimization</span><span class="skill-pill">API Optimization</span></div></div>
+    <div class="skill-card"><div class="skill-card-icon">🔐</div><h3>Cloud &amp; Auth</h3><div class="skill-pills"><span class="skill-pill">AWS Cognito</span><span class="skill-pill">SSO</span><span class="skill-pill">OAuth 2.0</span><span class="skill-pill">Cookie Auth</span><span class="skill-pill">XSS Mitigation</span><span class="skill-pill">SAST</span></div></div>
+    <div class="skill-card"><div class="skill-card-icon">🛠️</div><h3>Backend &amp; APIs</h3><div class="skill-pills"><span class="skill-pill">Node.js</span><span class="skill-pill">Express.js</span><span class="skill-pill">REST APIs</span><span class="skill-pill">MongoDB</span><span class="skill-pill">MySQL</span><span class="skill-pill">JWT</span></div></div>
+    <div class="skill-card"><div class="skill-card-icon">🚀</div><h3>DevOps &amp; Tools</h3><div class="skill-pills"><span class="skill-pill">Azure DevOps</span><span class="skill-pill">Git</span><span class="skill-pill">Shopify</span><span class="skill-pill">SonarQube</span><span class="skill-pill">Postman</span><span class="skill-pill">GitHub Copilot</span></div></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-tag">Career</div>
+  <h2 class="section-title">Work Experience</h2>
+  <div class="exp-timeline">
+    <div class="exp-item">
+      <div class="exp-company"><strong>Accenture</strong><span class="exp-current">Current</span></div>
+      <div class="exp-role">Application Development Analyst</div>
+      <div class="exp-date">June 2024 – Present · Noida, India</div>
+      <ul class="exp-bullets">
+        <li>Working on enterprise applications: Bedrock (Shopify), AEH Federal, eGrants &amp; GenWizard Marketplace.</li>
+        <li>Built AI Chatbot, AWS Cognito SSO auth, session timeout, and dynamic filter modules on GenWizard.</li>
+        <li>Architected secure cookie-based token storage replacing localStorage — mitigated XSS vulnerabilities.</li>
+        <li>Resolved CSP &amp; SAST vulnerabilities; managed deployments via Azure DevOps pipelines.</li>
+      </ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-company"><strong>Dotsquares Technologies</strong></div>
+      <div class="exp-role">Software Developer</div>
+      <div class="exp-date">Dec 2022 – Oct 2023</div>
+      <ul class="exp-bullets">
+        <li>Built the Joint Lending Group (JLG) loan platform with RBAC and Master Data Management.</li>
+        <li>Integrated REST APIs and handled async operations for smooth, error-resilient UX.</li>
+      </ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-company"><strong>BR Softech</strong></div>
+      <div class="exp-role">React.js Developer</div>
+      <div class="exp-date">Dec 2021 – Dec 2022</div>
+      <ul class="exp-bullets">
+        <li>Developed IIIT Allahabad portal — admissions, library, examinations, result management.</li>
+        <li>Built reusable React components; integrated RESTful APIs across multiple service modules.</li>
+      </ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-company"><strong>MoreYeahs</strong></div>
+      <div class="exp-role">Jr. React.js Developer</div>
+      <div class="exp-date">July 2021 – Dec 2021</div>
+      <ul class="exp-bullets">
+        <li>Developed UI features for a dynamic e-commerce platform using React.js and CSS.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="background:var(--bg2);">
+  <div class="section-tag">My Work</div>
+  <h2 class="section-title">Featured Projects</h2>
+  <div class="projects-grid">
+    <div class="project-card"><div class="project-num">01</div><h3>GenWizard Marketplace</h3><p>An AI-powered marketplace platform where users discover, interact with, and manage AI agents and prompts. Features secure auth, real-time chatbot, and session management.</p><div class="project-tech"><span class="tech-badge">Astro</span><span class="tech-badge">React</span><span class="tech-badge">TypeScript</span><span class="tech-badge">AWS Cognito</span><span class="tech-badge">Azure DevOps</span></div></div>
+    <div class="project-card"><div class="project-num">02</div><h3>Joint Lending Group (JLG)</h3><p>Loan management platform with RBAC, Master Data Management, and role-based user workflows. Full REST API integration with optimized async data flows.</p><div class="project-tech"><span class="tech-badge">React.js</span><span class="tech-badge">Redux</span><span class="tech-badge">REST APIs</span><span class="tech-badge">Node.js</span></div></div>
+    <div class="project-card"><div class="project-num">03</div><h3>Shopify Bedrock Theme</h3><p>Custom Shopify storefront theme with dynamic content using metafields and metaobjects. Responsive design with cross-browser compatibility.</p><div class="project-tech"><span class="tech-badge">Shopify</span><span class="tech-badge">Liquid</span><span class="tech-badge">Metafields</span><span class="tech-badge">JavaScript</span></div></div>
+    <div class="project-card"><div class="project-num">04</div><h3>IIIT Allahabad Portal</h3><p>Comprehensive academic portal managing admissions, library services, examinations, and result updates across multiple service modules.</p><div class="project-tech"><span class="tech-badge">React.js</span><span class="tech-badge">REST APIs</span><span class="tech-badge">Node.js</span></div></div>
+    <div class="project-card"><div class="project-num">05</div><h3>Dynamic E-Commerce App</h3><p>Feature-rich online shopping platform with product listings, cart management, and user authentication. Responsive design with smooth state management.</p><div class="project-tech"><span class="tech-badge">React.js</span><span class="tech-badge">Context API</span><span class="tech-badge">CSS3</span><span class="tech-badge">Bootstrap</span></div></div>
+    <div class="project-card"><div class="project-num">06</div><h3>Kisan Credit Card App</h3><p>Web application facilitating agricultural loans for farmers with streamlined application workflows and user management features.</p><div class="project-tech"><span class="tech-badge">React.js</span><span class="tech-badge">JavaScript</span><span class="tech-badge">REST APIs</span></div></div>
+  </div>
+</section>
+
+<!-- TECH ICONS - RISHABH STYLE -->
+<section id="tech" class="tech-section">
+  <div class="section-tag">Tech Stack</div>
+  <h2 class="tech-heading-big">Technologies <em>and</em> Tools I've<br><em>Worked</em> <strong>with</strong></h2>
+
+  <div class="tech-cat-grid">
+    <div class="tech-cat-col">
+      <h3 class="tech-cat-title">Frontend Development<br>and UI</h3>
+      <div class="tech-badge-list">
+        <span class="tb" style="background:#61DAFB;color:#000">React.js</span>
+        <span class="tb" style="background:#F7DF1E;color:#000">JavaScript</span>
+        <span class="tb" style="background:#3178C6;color:#fff">TypeScript</span>
+        <span class="tb" style="background:#E34F26;color:#fff">HTML5</span>
+        <span class="tb" style="background:#1572B6;color:#fff">CSS3</span>
+        <span class="tb" style="background:#764ABC;color:#fff">Redux</span>
+        <span class="tb" style="background:#06B6D4;color:#fff">Tailwind</span>
+        <span class="tb" style="background:#7952B3;color:#fff">Bootstrap</span>
+        <span class="tb" style="background:#0081CB;color:#fff">Material UI</span>
+        <span class="tb" style="background:#0170FE;color:#fff">Ant Design</span>
+      </div>
+    </div>
+    <div class="tech-cat-col">
+      <h3 class="tech-cat-title">Backend Development<br>and Database</h3>
+      <div class="tech-badge-list">
+        <span class="tb" style="background:#339933;color:#fff">Node.js</span>
+        <span class="tb" style="background:#404d59;color:#fff">Express.js</span>
+        <span class="tb" style="background:#47A248;color:#fff">MongoDB</span>
+        <span class="tb" style="background:#4479A1;color:#fff">MySQL</span>
+        <span class="tb" style="background:#FF6C37;color:#fff">Postman</span>
+      </div>
+    </div>
+    <div class="tech-cat-col">
+      <h3 class="tech-cat-title">Cloud &amp; DevOps</h3>
+      <div class="tech-badge-list">
+        <span class="tb" style="background:#FF9900;color:#000">AWS Cognito</span>
+        <span class="tb" style="background:#0078D7;color:#fff">Azure DevOps</span>
+        <span class="tb" style="background:#CB2029;color:#fff">SonarQube</span>
+        <span class="tb" style="background:#7c3aed;color:#fff">SSO / OAuth</span>
+      </div>
+    </div>
+    <div class="tech-cat-col">
+      <h3 class="tech-cat-title">Other Tools and<br>Frameworks</h3>
+      <div class="tech-badge-list">
+        <span class="tb" style="background:#F05032;color:#fff">Git</span>
+        <span class="tb" style="background:#333;color:#fff">GitHub</span>
+        <span class="tb" style="background:#007ACC;color:#fff">VS Code</span>
+        <span class="tb" style="background:#CB3837;color:#fff">NPM</span>
+        <span class="tb" style="background:#4285F4;color:#fff">DevTools</span>
+        <span class="tb" style="background:#96BF48;color:#fff">Shopify</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="resume" class="resume-section">
+  <div class="resume-top-row">
+    <div></div>
+    <p class="resume-sub">Let's connect — my resume tells the story of what I've built,</p>
+  </div>
+  <div class="resume-rule"></div>
+  <h2 class="resume-big"><strong>Experience, skills</strong>, and<br><strong>impact</strong>— all in one place.</h2>
+  <a href="data:application/pdf;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUiAvRjMgNiAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YxIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKMyAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nIC9OYW1lIC9GMiAvU3VidHlwZSAvVHlwZTEgL1R5cGUgL0ZvbnQKPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0EgPDwKL1MgL1VSSSAvVHlwZSAvQWN0aW9uIC9VUkkgKGh0dHBzOi8vd3d3LmxpbmtlZGluLmNvbS9pbi9rYWphbC1ndXB0YS1iNTQ3YTkxYjMvKQo+PiAvQm9yZGVyIFsgMCAwIDAgXSAvUmVjdCBbIDMyOC4zOTMzIDcyMS42IDM2MC41MjMzIDczMi4xIF0gL1N1YnR5cGUgL0xpbmsgL1R5cGUgL0Fubm90Cj4+CmVuZG9iago1IDAgb2JqCjw8Ci9BIDw8Ci9TIC9VUkkgL1R5cGUgL0FjdGlvbiAvVVJJIChodHRwczovL2dpdGh1Yi5jb20vMDhLYWphbGd1cHRhKQo+PiAvQm9yZGVyIFsgMCAwIDAgXSAvUmVjdCBbIDM3Mi45NTAzIDcyMS42IDM5OS40MDIzIDczMi4xIF0gL1N1YnR5cGUgL0xpbmsgL1R5cGUgL0Fubm90Cj4+CmVuZG9iago2IDAgb2JqCjw8Ci9CYXNlRm9udCAvSGVsdmV0aWNhLU9ibGlxdWUgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YzIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKNyAwIG9iago8PAovQW5ub3RzIFsgNCAwIFIgNSAwIFIgXSAvQ29udGVudHMgMTIgMCBSIC9NZWRpYUJveCBbIDAgMCA2MTIgNzkyIF0gL1BhcmVudCAxMSAwIFIgL1Jlc291cmNlcyA8PAovRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgCiAgL1RyYW5zIDw8Cgo+PiAvVHlwZSAvUGFnZQo+PgplbmRvYmoKOCAwIG9iago8PAovQ29udGVudHMgMTMgMCBSIC9NZWRpYUJveCBbIDAgMCA2MTIgNzkyIF0gL1BhcmVudCAxMSAwIFIgL1Jlc291cmNlcyA8PAovRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgL1RyYW5zIDw8Cgo+PiAKICAvVHlwZSAvUGFnZQo+PgplbmRvYmoKOSAwIG9iago8PAovUGFnZU1vZGUgL1VzZU5vbmUgL1BhZ2VzIDExIDAgUiAvVHlwZSAvQ2F0YWxvZwo+PgplbmRvYmoKMTAgMCBvYmoKPDwKL0F1dGhvciAoXChhbm9ueW1vdXNcKSkgL0NyZWF0aW9uRGF0ZSAoRDoyMDI2MDUwNTEzMzczNiswMCcwMCcpIC9DcmVhdG9yIChcKHVuc3BlY2lmaWVkXCkpIC9LZXl3b3JkcyAoKSAvTW9kRGF0ZSAoRDoyMDI2MDUwNTEzMzczNiswMCcwMCcpIC9Qcm9kdWNlciAoUmVwb3J0TGFiIFBERiBMaWJyYXJ5IC0gXChvcGVuc291cmNlXCkpIAogIC9TdWJqZWN0IChcKHVuc3BlY2lmaWVkXCkpIC9UaXRsZSAoXChhbm9ueW1vdXNcKSkgL1RyYXBwZWQgL0ZhbHNlCj4+CmVuZG9iagoxMSAwIG9iago8PAovQ291bnQgMiAvS2lkcyBbIDcgMCBSIDggMCBSIF0gL1R5cGUgL1BhZ2VzCj4+CmVuZG9iagoxMiAwIG9iago8PAovRmlsdGVyIFsgL0FTQ0lJODVEZWNvZGUgL0ZsYXRlRGVjb2RlIF0gL0xlbmd0aCAzMzU5Cj4+CnN0cmVhbQpHYXVgVj1hU1VpJnEvKjBXJGY7aVh0QCMqS3BRY3BKaG1dPltNZUxjP2VTRTRDIW9sZS9JQ1IvKyRXYy1lUCEtYTlhSGd0Pj5lUFFsKUlaVGdCJiZnPjVHX28hdXQrcG0wPSJNKV5dWDE+Ii9sSFFaK2lDcGpTbT5mTzQicUcsTXVePUpqWDs9S3FjQy9hKmNzP2YsYi9OKmIrZVkxIzZoMF8rLGs1Tzk+UUUxVmRqNCtiUjVSL0RrQ2JOOEpXW1Q6MSNscD9aK3MxbkldTVlZNWZSS2NlMzI2XjdJa2g4ZTdfSSVeIV0pQCltZkJXIj5HIm1ubjxqXSEjZDsoaSJnNTVsL1g0bWYmcUhBbmpmS0hSVGYlbSc1W1M0PTFtdEspQDFnSy0sR3VfbiIpdVdPUEduKDkoXTRYKk9WblVgWSNrIzJdJSViMTZhIylNWW8vcT5BRDU1dUhsWUUmTGpDOjV0cUZeXyNKVWZ0QzxcO0tNSD9SJztlZ0RiK2VwcTJlTTdVX0hoMGJkJGY/c0JwNTU5KC41Zy10bGtpLFdkXmtbKDxTTSNDPkA9N1BeNmFJSiEyZzAicDBcPVc7ZWdmXSErbihPN1E0QC4sWkcqI0JmcyNlImUkaDhCVUJNV2RMZkJLKl5rNVI3Y19VdG8iOmxdZWMwdWk6YU9gQ2YpNGVOTWFdVD0xUktOU0BHNyNEJDRNUy04RnBOKi8/LDw/My49cV9aIShOS2hNPUUvJUwxNVBsbkwvbnFHMGUwRyxmN0tNUDtKL0FPTjhfMVc5QjZfQFMkVC0/JVteb2liYEQ6NzNuWUlAMVwva1wxQTRBLipWNU8jb0VlPTAmcmAuMCVxNSM9ZGtHNjZpZ1dUOyZHLlcyXSEodDMiMVBXV15VQSFjOlUvXTExY2FZbC9CTzZIQT01ITs1IjM0L3NDKXUzSUReYU5yVjA3M2VlPFUjUXRLSEJsXS1LRiNiMzUxZ2tEYFQkMSs+Szo9JSw5ZlQuQ0c7Xzo0VzcicD41IXVHO0tvLDw8Ok9VY0RPKkVbJlVBOlRPV1Q8aFRLanFiIVBqKjhZLlYnR09MbShCR0dXYSxMZiZoZCEkIjhMNi08cVVlRkI+Pk1vOzRzK08ycDE6Nm5DKzdCbj5lXjRGbWRXP2pMUislQ11QNUtNJUBtcFVvITFpUVInUlo2X05oWFs0VGM/OkpSSy0iZ21NMTFaTClOcz05Ky1OYEYiLmBVZkhdL2BYaFFmTVNsI3BdLCZdMUhoZzZMYVQ0LW8qa1EnXl83Rm46dSVNWTlDXW9RL3NaaV1hY0ZGXWFccD4wamE9JVBqcEJSWF4hUTZeQkdGZ1U1MichTTZwWSgrZGI4OVhLOiowRnRbNE1lPVU8MGxTTk5cPjNbQT9aZll1QVFfc01gX0VscSlhYXV0KCgtSSc/VzVZKFVYJGYrajZYKXVeLyMiTjVKRWMlR1xGXD5FVnVbdGY9LXI6WVM7Yk02TCciIVZec3FWXiQ7OldGXi0jIWtmLTVpZDBFJElLT1E3SmkmUDQzV0BNbCdZQmIrX1JMSlc2VTgjPllDal5TLjMiJFlcR3EiLmxwW2RALzRFaCJbLFpJLWlfM1BoME41cDMpIUc7XDtcVzxCYnBLYWtQJCNUa0JRakVecUBvPy9TRGA/TnFCMiNCM3NDSGhvOTJjXCJGPG9nQF0yWCFubFQ/ITxoJz9bWmtcN0BnakUyZjUmaGpzPis2RnMlWW5lTlJdT1wtN2MwK0A5Uko6XUY/XmJQQXQvNlxkYzJSLCpTTT8rYD5rVGVLPnE7U3VPcERRKGVlaiVpJzA/aGAxM3ErS1E3RXEqbXJxS2c5aUEjRUJXOE10aD41bldfci5MUTUpJCtOQCNdXCxBVHJLYlRXV0pLO3FmX0pFIkk5MCw/UklQW1hBPSM0ZyQ1JzFLJyVuaFdRI1EuSVgqSlsyLV42YVZKRTorQ1VNaFEuMDZrY2lcYiFYaWs9VlBFK0ZuLUk/dUZkXXFGYCs6LDlrUXEpXEVVJVFYO1VjdChRWVFmIVQxQ1Y+N24rNVZyY2IzSVg4bT1lTDlGZ0NnR28waUM8Ty5NYjNbcGlAJW1cZmBQckRKIz1MIkFUWFVqRSJjTj4jO2hpPiMvQD5dQXJIZyZLU3I9MlRAY2czVDxTSWBgOV1BKz8xaSwtT3RNOm9EPj5jI1dhWEVcQzdqaGJWcipMdE8rSWFWXkZfX1csMWFKbklfb1kiXSJBYmxWY15TRzpUTXJLZ1gzX21dOWZiblpQK1IlZiFMWVpkbHROMyEzZnE4WnVdXlM5Jz0lJWo6UVlROCwsbHQxaF1OXy0rbGdNXGleVWBNPE5OJD8hbVhcXFFRJV1VJ0lXUjBOdSxZTDsnPExPdXJoRDhvT1NHajBCb0M6XSpDaiI3dEJOT0JoSEgsUk1GYURUQEQqMHMlUXFvTnBZKU1oUWZZMENlZmsuaEVaYUJSc11OLDo7RkNHLGo+b2psTCM6SWQtLlg7aEVecWhxcigvL1NXIiNqPmNtJDBDYjtCPCpecy5BU11BITQ0OiZZKWFdcUsqWVVsMSYjYk83K0c7PTpSWDFCNSRRUmprIXMoUTsnUkA8JGlmUl1KZGM1UjltUy05bDBJZ2pkOkNXRXBwI3I5SyMjJigwUUE5RVVBbilmZ2toUVlsSkVXbUJNWFRxMEJvMTRPTVlzVVRvbmJOcWgwSDNwND1cOU8zY141YW09SEdmP0M9U3FOOVctXUVibis4Q2YtVXBLJixlIltvcyszMWFJcl8pViRGVEE2WTpmRW1fTzYxNDxAcSo7XUwtMXI2MWhtXU5sLVZTI09hQVNrOVtsMEhfWFZjRT5bOXJbLjhQOE8tdTolLG82c1syNm9CPzk6PTxvVmFvWU1APlVJTUU2XUgsLExDUWIqXV9iWTRcQlFnXD8oOWRCcWY7JVppbXNacFdlL2k2bGQ9bT80RE1sUGM+YS5xTV5IOWpKPDZVMFhRVyokT1ZjOylbYSI1JDAsJSskV0s3RlxgRktXRGBzb2ZoNmQwcC9SQWpgUTg3LVlBJVFna15XJF8xWGtfSXUxKjNfVzFGXUNcOmJSQiMrNiFMZUFAYCUvZy1RSy8uLTBAVGBoOGI8dVkyU1tpOy8oY007Rz44cmVnZktQOltcPkNnbHVRKWYxQjxyWzdvT04pPz50cm0vX1U4b2VRJjg8IjlrLSdrUWguIzNNRyYxW0w7SzdeaEZYIyxjXmhKR0knOTNVUyIqKzxfLSZLWGxzPzRXQStoJz0iU0xHIW5DMGcqSyxtYXBuaHU/TFc+M2hfTGIzL1tHVUNNSCRyKC9bbCFmMk9EZD5saE1gVFBMNV5xVFVJNW0rNHBVZWg7OF1NLydHRTpPNVBpNzkmPUlmR1ZbIjRgcGRhVV4kWzRtKCtJOGJtck9ILzBnaHErS04zMitLM11BTSRhcFdoWzVNb05tQkdnPU4mPVFWIT1HN2o3NytaWFpuKVNyU15KaiYuamxTXWVrRCJHPWImQG1KaSJmTWJyVytwVyEwcVBecDQnR1dYJHVvUl8vIiFcJS1mT1MzWiVVNCdddG9GVVFmSUtzTDJJLTFVX29AR1YwOW50RC5ZJDRoTFosNFVvMFBsOXUjcWQzaGBLKCZFI3MoZ0UkbTRCSmEkSGpeRTZwQGIpM2ZUUlUla05XaV1HKC1LaUUvalteYGJVJWMiITxPMCwvIiZcQVdiXFkmYllgMWRvcyxcMy9ac2U+dC5VZzg9TUtMLjwwUlcmYEkwIi1QPTRQIT0iaCMjX142S2cta1ZCVTAnSClNVGBpTjMyUSplIVZrMkFyOE8pX2leKkVMT2phWWo7ZzpLTG0yLypLQl9AWUddOGZqWjxnIixaJ2FhSGpvci9cZzkrOFdcbiw2UWZCQWsxW01nNEphPlFbQyQsJ2JJK08wLyQ3b29hUVk+Rk40bXFCQjE1KVguNys8JVJxMUVFRE5ZJTxgYzlEJGNETi8iUHNvISxBdEVuZVtgO1xPP1hSQ3EpXCghOUtnbltqbDptM2EuKzE+Nyg/OzRadEIqLmovWz1aWUsjbC1NUlhmcmEkXFlAUUwiLkArVlM9aDlFP2NmYC5bcSVqLUhhVGpHMGRvMS5RJy5yKDJZLDovYi01Z1hHP11RcSY3bU0wSUFHS2swZGBQK2RUWm1AKlpKMFhfTlwlc0JuT25sXiVZa103VEY5U10pJ2FsRCppSlNzIzNnaWA/VFdENGxbTjY1YzsrJydkX1JIJTE+aVxEJSUyNT9mUFJbPjhmaDdlKCtebFEvPkAyOkFDbDIpMj9oK2smJ1kjPShBSmNIaUIjVzRmLC9acUdLLTBCMTNPSU47JltvLS9LMSUqL0JYbD4vc2FzOVRcPUBdNl8qN24+IiFWSD09YXJMbkFDQFk/Q2ptViUtUzpfRF5oUGJjJV5sTiInNVAnMj9+PmVuZHN0cmVhbQplbmRvYmoKMTMgMCBvYmoKPDwKL0ZpbHRlciBbIC9BU0NJSTg1RGVjb2RlIC9GbGF0ZURlY29kZSBdIC9MZW5ndGggMjI3NAo+PgpzdHJlYW0KR2F1YFQ+QmVkXCY6VnMvUiY8KWgmJUs+bTRhZEJQZmpwPCYxc2tYWDNJKTRGISUicjQ4b2IyI3JVRHQ0RCc0SzdCUEVbI2AqZTZUMVooLl9jLkUrN0ltKlpuTXVlNWxHXm8iMGtKTTZJP0pWVHVuLkpLTjdwaDpoQFYlXUFIdF8nIk5lXnVXcWk5OU9LOHBLLj0jaTpYYyxzc01wZE0oXV9xOGthWitDOCdgWzArcVw3LTpAampuNFRpLzRhLGl1YTcnakhMb2lRcjIuRU9VLzpcLUpJNWomS01IUDU2LVcyJU5ANDo4V2o/KTxKIUhuUm8pKEBURVdcMUFXZCpkO3BJXyhSN005K0I0U3E/ZHJYW20lLkBVITN1JGtRUVFQYUFoOicvYFJebz8hXXE+MTVLQi0ycHIrQDFxSzUiaVVIQ15vPGxkciY+RVBYOnFqJFVsIi85ZTQkI3RiL2xBPyY3K1QsQU5SNGdfQ1RZTVIzaSg5Q2xwY1NMUnI6cGNlZWInPWRAVDdjVi8qby1VQCc5NmQ/aGBYKCJqMk9wa0RBZkhLVnJeRk1TR0JJdUJTXmNnTDY+QHBHNylUPlRObjlsX0RlXXJdS1prSjllKzNUS1ojRXBQP00+MzBwTm85Q0pPTShhUzxgSWpsWC9JVD5dXjpoT0tvJVAwb29JQDgpTUk7Q1hwNkpPITE6Ok1YQlFJOUtfYFI6PTlLJlZWXT4lMCFCXypXKEsqRFdHWkMpQzZSaF1CSFlIbkYvUDgzQSdlVjtbPGZDOEVINTNxPDE8dScpWTpPYWpMR0tsUVdAXSxRWDFZJkNXTDQ3Si1dUUYlVlQsUWAtbFM7cl1FVzckSlMuUyJRWldBPFgiN0M+O1VpIz9rRilcVW5Ua1RMYmUzWkhoY0wyazA2bFUiQylzWD5eZ2JKZ2xzLllXNk5KMWRAamwkOj5zcjNaQUZPYVtlczNAUSVfQj4iIic6QU8uPyFuPUpWcy5gbFIkPUE1XUs8L05hVUMoLyhKTihGdDRbM0dfO1hjaF5fOnFjXU46LD1icCZsLkFuZE49dWFobkp0VktyaDRYREkxQWRhRiclMGVkTklUX1hPPURTNFxAI0pab25JXy1kTjItPFpLYEkuYzJYTTZGVU9FSzAnLTktVGpdS1MtaktTMUA5QnBnXFBrPVokP2ViNy9fPksyQWpRPScoOUBVJD8hYF5ucmBOLj5oN0pXPmFwMFE8PDtZcWY9YkVdSl5GZDdnZkI2VUAqNTlEUFBaYXFTKnNbXWQ0MVBwQl9IM1VpWCZrRDBUMlRNZG1eRlRoVXA1N2krWmoua2oybElfQGEnOSdlS0hCX1ckMD5uMkxISGFfV0k8NyxwRFgvXWlSYSM3M1ZIT0gpcFJYQV5TTTJbUERudCdUXCRFVEpHLGwxJXBsYTUraC83I2xWKlBPZ0BCZGpCV1giXidBWmlrWGhuRiNIP29ZaShhKVY5L0lSUGtLanItLF8oSGp0IkhYJ1ZqaiEuc2tSKz1KZEddLEY+UyQkPUwvV0wtT1NOSks0Yz5tVE0tTVAiJk07JU9BKSk1XWFqNVwyZz4sQlY5SmcxaGVLJCg0V0YnQ11KXGFrVDluYFtNWyUzJVxeMCxwQ1NZPi5SajYxcGZEVlZQZzxFYmRGTD9QP1RpRW5EVFZxT2hkJ0Q7SnJ0ITBkW2RsS2UpWzRRa0AqLG8kYllvR3UvUllCcS9EKFcpQktHYylpZVBAPmcuJ0spMSY+b1UxX1M0ZmNwRyFvakhOPUpoJVJCOi4wdGYnQTc7WmVLXE5QJiIySkRKNTd0aW9PXSlLXlNMbmhDNUpFKEFIVGJPYWYjXkBsKFNwOTxZMHBqXGgyalw/PTJ1TSFuJ0FnVFAnKStWWVFMTSdpIy8+YWUjKSJmSmNAS3M8Mz5RRXBCQihHZlRbLkgkQ3BhYzFyNU4qQEF1OlVfSWxPcyx0QGgnZFUrcFhtX1pNQkIrLFZGPUpVLGc9bSRdPiNEW0hILy9bclc/dUpmUVtsaClHLExlKik9b1c0bjEvdVc1OWp1ZWcvK187R0QqUWoscUprTXBXIydcKSVOJyJhVmU9QEFeRGY5QnVUODgzL1kkTjA4bGlXaFRNQyZpUiowWGMoMU4/P2hRdU5NUjl1U0NpQko+M1NXJWVlWFQpTzpTMGFXXSQiRy1JVHArX1stMW9ia1hSSmxDNnE2bWZFMVxyI0c7PDQzZjhtT1UvTkFNNV10Oz4iRlgpczRwaGtCMCtZWGNDcD89a3E4NThNbSpZO1JlcE9CZ0dVJEtiXFNSb2I7Xkc0LCpBLF4mYi9UZFhLLllKI1ZwOlo0SmorLVotIjhiTiJfVUBcTjdFK05uQHRVYG9ANjZYTjVmZ1s+QlNVQGJkMSs1X1JabTR0b3FhXS1sRidiLSQ0OlpvPzRFaDNFYTpoaHVbOCxmWlQ7bWI9PGVXJ1g4Y049PyJeP1siKTgyJUc9ZVUhLEM5X0M8Y24qIWJgaV1fSmsyVVJGW2pLI2o/OFJZcjU/Ny1ZS3JhQFRkP3EsOVQiIyFjU0RhSltSJGZ0RzJYLlgkYW9Rc3JlK28iVmVRI0U7SGA/JCovQFhOUz9OMjZjc1dsSyZfPk5RJi1jXSFraSMzVkElIVtSJS5NRmNRUlBoaUFibkBfPnQxbCs3VDpUNSFNdCNKZl5kU1MhNGdtWjErY2goWmRiT2QvcCY8XTUuQC5nKiFGN1xNa1FxTiNIR2wnc0xdb05SKk9aITRhOTo0OXQxKyEoRFhZVitSVUdzK1txTnAhYltTZy9dYjs9PTk6KzJZQ08lcTVDZDgnI3Q2LyZrczIxYyk9OlpwQSxxSig9IyVubSYlO19rRVtHcGg1MFY8K2JrUDE0RCNdaTNIXTZHWVx0MmszVnBkcGxsV1c9NGlNK1M9dSNVXjRkOW9jNVhYUCxONGwtbkxCKCY/T15ETCJPUUskI1tsIj8jXzNfLTdkZW5CI2dbKzlaZlR0QmZFIk1CIikkWkNDQn4+ZW5kc3RyZWFtCmVuZG9iagp4cmVmCjAgMTQKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDYxIDAwMDAwIG4gCjAwMDAwMDAxMTIgMDAwMDAgbiAKMDAwMDAwMDIxOSAwMDAwMCBuIAowMDAwMDAwMzMxIDAwMDAwIG4gCjAwMDAwMDA1MjcgMDAwMDAgbiAKMDAwMDAwMDcwNCAwMDAwMCBuIAowMDAwMDAwODE5IDAwMDAwIG4gCjAwMDAwMDEwMzggMDAwMDAgbiAKMDAwMDAwMTIzMyAwMDAwMCBuIAowMDAwMDAxMzAyIDAwMDAwIG4gCjAwMDAwMDE1ODMgMDAwMDAgbiAKMDAwMDAwMTY0OSAwMDAwMCBuIAowMDAwMDA1MTAwIDAwMDAwIG4gCnRyYWlsZXIKPDwKL0lEIApbPGRjZDlmMTM1ZmIyYWZlZDJjNjg4MWVmZDk3ZWMxZmIxPjxkY2Q5ZjEzNWZiMmFmZWQyYzY4ODFlZmQ5N2VjMWZiMT5dCiUgUmVwb3J0TGFiIGdlbmVyYXRlZCBQREYgZG9jdW1lbnQgLS0gZGlnZXN0IChvcGVuc291cmNlKQoKL0luZm8gMTAgMCBSCi9Sb290IDkgMCBSCi9TaXplIDE0Cj4+CnN0YXJ0eHJlZgo3NDY2CiUlRU9GCg==" download="Kajal_Gupta_Resume.pdf" class="resume-dl-btn">DOWNLOAD RESUME</a>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-tag">Achievements</div>
+  <h2 class="section-title">Certifications &amp; Training</h2>
+  <div class="cert-grid">
+    <div class="cert-card"><div class="cert-icon">🤖</div><div class="cert-info"><strong>Agentic AI Training</strong><span>Accenture · 2026</span></div></div>
+    <div class="cert-card"><div class="cert-icon">🤝</div><div class="cert-info"><strong>GitHub Copilot Training</strong><span>Accenture · 2025</span></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="contact-wrap">
+    <div class="section-tag">Get In Touch</div>
+    <h2 class="section-title">Let's Work Together</h2>
+    <p>I'm currently open to new Frontend Developer &amp; React Developer opportunities. Whether you have a role in mind or just want to say hi — my inbox is always open!</p>
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/kajal-gupta-b547a91b3/" target="_blank" class="contact-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn
+      </a>
+      <a href="https://github.com/08Kajalgupta" target="_blank" class="contact-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>GitHub
+      </a>
+    </div>
+    <a href="mailto:kg804027@gmail.com" class="contact-email">kg804027@gmail.com</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer-new">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">Kajal<span>.</span></div>
+      <div class="footer-email">kg804027@gmail.com</div>
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/in/kajal-gupta-b547a91b3/" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://github.com/08Kajalgupta" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#top">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Frontend</h4>
+      <ul>
+        <li><a href="#">React.js</a></li>
+        <li><a href="#">JavaScript (ES6+)</a></li>
+        <li><a href="#">TypeScript</a></li>
+        <li><a href="#">Redux</a></li>
+        <li><a href="#">Tailwind CSS</a></li>
+        <li><a href="#">HTML5 &amp; CSS3</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Other Tools</h4>
+      <ul>
+        <li><a href="#">Git &amp; Azure DevOps</a></li>
+        <li><a href="#">AWS Cognito</a></li>
+        <li><a href="#">Node.js</a></li>
+        <li><a href="#">REST APIs</a></li>
+        <li><a href="#">Shopify</a></li>
+        <li><a href="#">SonarQube</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Kajal Gupta &middot; Frontend Developer &amp; React Developer &middot; Noida, India</p>
+  </div>
+</footer>
+
+</body>
+</html>
